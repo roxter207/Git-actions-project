@@ -31,5 +31,5 @@ jobs:
       run: |
         IMAGE_NAME=ghcr.io/${{ github.actor }}/$(echo "${{ github.event.repository.name }}" | tr '[:upper:]' '[:lower:]')
         docker run -d -p 3000:3000 --name test-app $IMAGE_NAME:latest
-        sleep 5
+        sleep 20
         curl http://localhost:3000
