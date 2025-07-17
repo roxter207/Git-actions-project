@@ -4,7 +4,7 @@ FROM alpine:latest
 RUN apk add --no-cache curl
 
 # Copy the entrypoint script from your repo into the container
-COPY .github/custom-action/entrypoint.sh /entrypoint.sh
+COPY /entrypoint.sh /entrypoint.sh
 
 # Make it executable
 RUN chmod +x /entrypoint.sh
