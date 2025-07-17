@@ -33,3 +33,8 @@ jobs:
         docker run -d -p 3000:3000 --name test-app $IMAGE_NAME:latest
         sleep 20
         curl http://localhost:3000
+    - name: 🔧 Run custom Docker action
+      uses: ./.github/custom-action
+      with:
+        message: "This is from Sneha's & Sahil's custom GitHub Action!"
+
