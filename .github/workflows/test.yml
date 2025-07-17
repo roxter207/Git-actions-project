@@ -1,20 +1,25 @@
-name: Simulated Test Run with Artifact
+name: Run Simulated Tests on Self-Hosted Runners
 
-on: [push]
+on: [push, pull_request]
 
 jobs:
-  simulate:
-    runs-on: ubuntu-latest
+  test:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
 
     steps:
-    - name: Checkout code
+    - name: Checkout Code
       uses: actions/checkout@v4
 
-    - name: Simulate test
-      run: echo "All tests passed successfully!" > test-report.txt
+    - name: Simulate Test Output
+      run: |
+        echo "Running on ${{ matrix.os }}" > test-report.txt
+        echo "Simulated test result: ✅ All good!" >> test-report.txt
 
-    - name: Upload simulated report
+    - name: Upload Test Report Artifact
       uses: actions/upload-artifact@v4
       with:
-        name: test-report
+        name: test-report-${{ matrix.os }}
         path: test-report.txt
